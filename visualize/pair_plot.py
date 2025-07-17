@@ -8,26 +8,11 @@ from describe import *
 
 students = importData("../datasets/dataset_train.csv")
 
-random_students = next(iter(students.values()))
+data_frame = pd.DataFrame.from_dict(students, orient='index')
 
-subjects = [x for x in random_students.keys() if x != "House"]
+data_frame = data_frame.dropna()
 
-result = {
-    "subject": [],
-    "grade" : [],
-}
-
-for subject in subjects:
-    filtered = [s[subject] for s in students.values() if s[subject] is not None]
-    result["subject"].append(subject)
-    result["grade"].append(filtered)
-    
-plt.figure(figsize=(12, 6))
-sns.swarmplot(x=data["Subject"], y=data["Grade"], palette="Set2")
-plt.xticks(rotation=45)
-plt.title("Distribution des notes par matière (Swarmplot)")
-plt.ylabel("Note")
-plt.xlabel("Matière")
-plt.grid(True, linestyle="--", alpha=0.3)
-plt.tight_layout()
-plt.show()
+g = sn.pairplot(data_frame, hue="House", plot_kws={'alpha':0.5, 'edgecolor': 'k'})
+g.fig.set_size_inches(18, 18)
+g.fig.suptitle("Pair Plot des Matières", y=1.02)
+g.savefig("pairplot_maison.png")  # 1-charms, 2 - magic, 3-flying, 4-ancient runes
