@@ -20,7 +20,7 @@ result = []
 for house in houses:
     filtered = [s for s in students.values() if s["House"] == house]
     for subject in subjects:
-        std = meanData(filtered, subject)
+        std = stdData(filtered, subject)
         print(f"l'ecart pour la matiere {subject} de la maison {house} est de {std}")
         result.append({
             "House" : house,

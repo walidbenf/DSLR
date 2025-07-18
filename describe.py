@@ -41,12 +41,6 @@ def meanData(students, subject:str):
     mean = [x[subject] for x in iterable if x[subject] is not None]
     return sum(mean) / len(mean)
 
-# def stdData(students, subject:str):
-#     mean = meanData(students, subject)
-#     ecarts = [(x - mean)**2 for x in students[subject]]
-#     variance = sum(ecarts_carres) / len(students)
-#     std = math.sqrt(variance)
-#     return std
 
 def stdData(students, subject:str):
     if isinstance(students, dict):
