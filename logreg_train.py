@@ -28,10 +28,12 @@ def train_house(students, house_name, initial_weights, l_rate=0.000001, iteratio
             for key, weight in weights.items():
                 valeur = student.get(key, 1 if key.lower() == "biais" else 0)
                 if valeur is not None:
-                    produit_ponderes += weight * valeur   # calcule de tous les poids * la note de l'étudiant
+                    produit_ponderes += weight * valeur   #calcule de tous les poids(impact de la note sur la somme) * la note de letudiant = poids_pondere
 
             if produit_ponderes >= 0:
-                # sigmoide permet de donner un chiffre entre 0 et 1
+                # sigmoide prmet de donner un chiffre entre 0 et 1 = 1 / (1 + (1 / e puissance -produit_ponderes))
+                #et la puissance d'n negatif reviens a diviser 1 par e puissance le positif du nombre donner
+                #en gros math.exp() calcule la puissance de eulere pour le nombre donner
                 proba = 1 / (1 + math.exp(-produit_ponderes))
             else:
                 # sert à gérer les négatifs trop petits pour éviter les overflow
@@ -75,28 +77,28 @@ def get_all_subjects():
 
 def train_gryffindor(students):
     """Entraîne le modèle pour Gryffindor."""
-    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights = {subject: 0.0 for subject in get_all_subjects()}
     weights["biais"] = 0.0
     return train_house(students, "Gryffindor", weights, l_rate=0.000001)
 
 
 def train_ravenclaw(students):
     """Entraîne le modèle pour Ravenclaw."""
-    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights = {subject: 0.0 for subject in get_all_subjects()}
     weights["biais"] = 0.0
     return train_house(students, "Ravenclaw", weights, l_rate=0.000001)
 
 
 def train_slytherin(students):
     """Entraîne le modèle pour Slytherin."""
-    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights = {subject: 0.0 for subject in get_all_subjects()}
     weights["biais"] = 0.0
     return train_house(students, "Slytherin", weights, l_rate=0.000001)
 
 
 def train_hufflepuff(students):
     """Entraîne le modèle pour Hufflepuff."""
-    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights = {subject: 0.0 for subject in get_all_subjects()}
     weights["biais"] = 0.0
     return train_house(students, "Hufflepuff", weights, l_rate=0.000001)
 
