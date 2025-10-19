@@ -1,12 +1,16 @@
 import sys
 import pandas as pd
 import os
-import matplotlib.pyplot as plt 
-import seaborn as sn 
+import matplotlib.pyplot as plt
+import seaborn as sn
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from describe import *
 
-students = importData("../datasets/dataset_train.csv")
+if len(sys.argv) < 2:
+    print("Usage: python pair_plot.py <dataset_path>")
+    sys.exit(1)
+dataset_path = sys.argv[1]
+students = importData(dataset_path)
 
 data_frame = pd.DataFrame.from_dict(students, orient='index')
 

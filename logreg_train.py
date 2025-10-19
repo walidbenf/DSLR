@@ -54,59 +54,51 @@ def train_house(students, house_name, initial_weights, l_rate=0.000001, iteratio
     return weights
 
 
+def get_all_subjects():
+    """Retourne toutes les matières disponibles."""
+    return [
+        "Arithmancy",
+        "Astronomy",
+        "Herbology",
+        "Defense Against the Dark Arts",
+        "Divination",
+        "Muggle Studies",
+        "Ancient Runes",
+        "History of Magic",
+        "Transfiguration",
+        "Potions",
+        "Care of Magical Creatures",
+        "Charms",
+        "Flying"
+    ]
+
+
 def train_gryffindor(students):
     """Entraîne le modèle pour Gryffindor."""
-    weights = {
-        # "Charms" : 0.01,
-        # "History of Magic" : 0.02,
-        "Flying" : 0.03,
-        "Transfiguration" : 0.04,
-        "Defense" : 0.02,
-        # "Herbology" : 0.03,
-        "Potions": -0.02,
-        "biais" : 0.05,
-    }
+    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights["biais"] = 0.0
     return train_house(students, "Gryffindor", weights, l_rate=0.000001)
 
 
 def train_ravenclaw(students):
     """Entraîne le modèle pour Ravenclaw."""
-    weights = {
-        "Charms" : 0.02,
-        "Defense" : 0.05,
-        "History og Magic" : -0.04,
-        "Ancient Runes" : 0.02,
-        "Magie" : -0.02,
-        "Biais" : 0.4,
-    }
-    return train_house(students, "Ravenclaw", weights, l_rate=0.0000009)
-
+    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights["biais"] = 0.0
+    return train_house(students, "Ravenclaw", weights, l_rate=0.000001)
 
 
 def train_slytherin(students):
     """Entraîne le modèle pour Slytherin."""
-    weights = {
-        "Potions" : 0.03,
-        "Herbology" : -0.02,
-        "Defense" : 0.04,
-        "Care of Magical Creatures" : 0.01,
-        "Divination" : -0.03,
-        "biais" : 0.06,
-    }
+    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights["biais"] = 0.0
     return train_house(students, "Slytherin", weights, l_rate=0.000001)
 
 
 def train_hufflepuff(students):
     """Entraîne le modèle pour Hufflepuff."""
-    weights = {
-        "Herbology" : 0.02,
-        "Defense" : 0.05,
-        "History of Magic" : -0.04,
-        "Ancient Runes" : 0.02,
-        "Magie" : -0.02,
-        "Biais" : 0.4,
-    }
-    return train_house(students, "Ravenclaw", weights, l_rate=0.0000009)
+    weights = {feature: 0.0 for feature in get_all_subjects()}
+    weights["biais"] = 0.0
+    return train_house(students, "Hufflepuff", weights, l_rate=0.000001)
 
 def save_weights(weights_dict, filename="weights.json"):
     """
