@@ -4,7 +4,7 @@ import csv
 import math
 import json
 
-def train_house(students, house_name, initial_weights, l_rate=0.000001, iterations=10000):
+def train_house(students, house_name, initial_weights, l_rate=0.000001, iterations=10000): # j'ai fait une fonction pour toutes les maisons pour éviter la redondance
     """
     Entraîne un modèle de régression logistique pour une maison spécifique.
 
@@ -56,7 +56,7 @@ def train_house(students, house_name, initial_weights, l_rate=0.000001, iteratio
     return weights
 
 
-def get_all_subjects():
+def get_all_subjects(): # j'ai mis toutes les matieres dans une liste pour éviter la redondance
     """Retourne toutes les matières disponibles."""
     return [
         "Arithmancy",
